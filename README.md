@@ -15,3 +15,20 @@
 ```
 
 *Download is recommended*
+
+### Create exam widget
+
+> Create a html div tag with id or class.
+> Add a script tag with createExamWidget() function.
+
+```html
+<div id='exam'></div>
+<script>
+  createExamWidget('#exam', {/* Question JSON */})
+</script>
+
+<div class='exam'></div>
+<script>
+  createExamWidget('.exam', {/* Question JSON */})
+</script>
+```
