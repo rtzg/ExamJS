@@ -32,3 +32,26 @@
   createExamWidget('.exam', {/* Question JSON */})
 </script>
 ```
+
+### Question JSON
+
+> Example:
+
+```json
+{
+title: 'Exam Title',
+question: [
+  {
+    type: '[(type of input tag)]';
+    text: '[Question (Will append to the question) ]',
+    prompt : '[Placeholder]',
+    questionType : '[FillQ/MCQ]',
+    part : '[Part] (Optional)',
+    option : ['','',''... (If questionType is MCQ)]
+  },
+  {},
+  {}...
+],
+partition : [Bool (if true, part is needed)]
+}
+```
