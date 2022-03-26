@@ -1,3 +1,3 @@
 # ExamJS
 
-> (c) 2022 Xchuang Corp.
+> &copyright; 2022 Xchuang Corp.
