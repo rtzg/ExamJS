@@ -14,4 +14,4 @@
 <script src="https://xchuangc.github.io/examjs/main.js"></script>
 ```
 
-**Download is recommended**
+*Download is recommended*
