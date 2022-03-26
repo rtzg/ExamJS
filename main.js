@@ -1667,13 +1667,17 @@
 });
 // included jquery
 
+var notFoucsing = false;
 var FillQuestionElement = `<div id="t[id]"><p>[question]</p><input type="[type]" placeholder="[prompt]" id="question[id]"/>[required]<hr></div>`;
 var MCQuestionElement = `<div id="t[id]"><p>[question]</p><span id="question[id]"></span>[required]<hr></div>`;
 var submitElement = `<div><button type="submit" onclick="checkAnwser();">Submit</button></div>`;
 var examJS = {
     element: '',
     quantity: '',
-    correctAnswers: []
+    correctAnswers: [],
+    check: function() {
+        return JSON.stringify(checkAnswer());
+    }
 }
 
 const createExamWidget = (element, json = {}) => {
@@ -1754,7 +1758,7 @@ const createExamWidget = (element, json = {}) => {
     }
 }
 
-var checkAnwser = (idFormat = 'question') => {
+var checkAnswer = (idFormat = 'question') => {
     var undefinedAnswers = [];
     var answers = [];
     var json = {};
@@ -1775,36 +1779,56 @@ var checkAnwser = (idFormat = 'question') => {
         // if question type is FillQ
         if($('#'+idFormat+id).attr('type') === 'text') {
             answered.push(answer);
+            // Get the part of the question
+            part = $('#'+idFormat+id).parent().parent().children('h2').text();
             if(answer == examJS.correctAnswers[i]){
-                answers.push(true);
+                answers.push([true,part,answer]);
             } else {
-                answers.push(false);
+                answers.push([false,part,answer]);
             }
         }
         // if question type is MCQ
         else {
-            var c;
+            var c, a;
+            part = $('#'+idFormat+id).parent().parent().children('h2').text();
             for(let j=0;j<$(`#question${i}>label`).length;j++){
                 if($(`#question${i}>label>input`)[j].checked){
                     answered.push($(`#question${i}>label>input`)[j].value);
                     if($(`#question${i}>label>input`)[j].value == examJS.correctAnswers[i]){
-                        answers.push(true);
+                        answers.push([true,part,$(`#question${i}>label>input`)[j].value]);
                         c = true;
                     }
+                    a = $(`#question${i}>label>input`)[j].value;
                 }
             }
             if(!c){
-                answers.push(false);
+                a == undefined ? a = 'Null' : a = a;
+                answers.push([false,part,a]);
             }
         }
     }
+    json.correct = 0;
+    json.wrong = 0;
+    json.notAnswred = 0;
     json.answers = answers;
+    for(let i=0;i<answers.length;i++){
+        if(answers[i][0] === true){
+            json.correct++;
+        } else {
+            json.wrong++;
+        }
+        if(answers[i][2] === '' || answers[i][2] === 'Null' || answers[i][2] === undefined || answers[i][2] === null){
+            json.notAnswred++;
+        }
+    }
     json.quantity = amout;
     json.title = $(examJS.element).find('h1').text();
-    json.correctAmount = answers.filter(x => x).length == undefined ? 0 : answers.filter(x => x).length;
-    json.wrongAmount = answers.filter(x => !x).length == undefined ? 0 : answers.filter(x => !x).length;
-    json.percentage = Math.round(json.correctAmount / json.quantity * 100);
+    json.percentage = Math.round(json.correct / json.quantity * 100) + '%';
     json.answered = answered;
-    json.undefinedAnswers = undefinedAnswers;
+    json.noAnswerQuestions = undefinedAnswers;
     return json;
 }
+
+// (c) BaiG 2022
+// (c) xchuang corp. 2022
+// All rights reserved.
