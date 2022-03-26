@@ -9,7 +9,7 @@
 
 > Use `<script>` tag to import the code.
 
-```js
+```html
 <script src="../main.js"></script>
 <script src="https://xchuangc.github.io/examjs/main.js"></script>
 ```
