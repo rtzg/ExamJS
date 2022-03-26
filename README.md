@@ -76,3 +76,10 @@ FillQuestionElement = `<div id="t[id]"><p>[question]</p><input type="[type]" pla
 MCQuestionElement = `<div id="t[id]"><p>[question]</p><span id="question[id]"></span>[required]<hr></div>`;
 submitElement = `<div><button type="submit" onclick="location.href='after.html?'+examJS.check()">Submit</button></div>`;
 ```
+
+### Functions
+`checkAnswer();`
+> Check the answer and return a json object.
+
+`examJS.check();`
+> Check the answer and return a string.
