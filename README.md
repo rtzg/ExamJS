@@ -37,7 +37,7 @@
 
 > Example:
 
-```json
+```
 {
 title: 'Exam Title',
 question: [
