@@ -55,3 +55,24 @@
   partition : [Bool (if true, part is needed)]
 }
 ```
+
+### Element
+
+> FillQuestionElement
+> > If the type of question is FillQ, the question element which apend to the exam div will be FillQuestionElement vairable.
+> > If the type of question is FillQ, the question element which apend to the exam div will be MCQuestionElement vairable.
+> > The submitElement. You can customize it.
+
+> [id] = Cycles
+> [question] = Question string
+> [type] = input type
+> [prompt] = placeholder
+> [required] = [*]
+
+> > For example:
+
+```js
+FillQuestionElement = `<div id="t[id]"><p>[question]</p><input type="[type]" placeholder="[prompt]" id="question[id]"/>[required]<hr></div>`;
+MCQuestionElement = `<div id="t[id]"><p>[question]</p><span id="question[id]"></span>[required]<hr></div>`;
+submitElement = `<div><button type="submit" onclick="location.href='after.html?'+examJS.check()">Submit</button></div>`;
+```
