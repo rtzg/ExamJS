@@ -1,7 +1,7 @@
 # ExamJS
 
-> &copy; 2022 Xchuang Corp.
-> &copy; BaiG 2022.
+> &copy; 2022 AlphaBrate
+> &copy; ReTrn 2022.
 
 ### Import
 
@@ -10,8 +10,7 @@
 > Use `<script>` tag to import the code.
 
 ```html
-<script src="../main.js"></script>
-<script src="https://xchuangc.github.io/ExamJS/main.js"></script>
+<script src="EXAMJS/main.js"></script>
 ```
 
 *Download is recommended*
